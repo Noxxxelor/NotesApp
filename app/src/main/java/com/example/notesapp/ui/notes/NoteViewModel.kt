@@ -1,31 +1,31 @@
 package com.example.notesapp.ui.notes
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModel
 import com.example.notesapp.data.repository.NoteRepository
 import com.example.notesapp.data.model.Note
+import kotlinx.coroutines.launch
 
 class NoteViewModel(private val repository : NoteRepository) : ViewModel() {
-    val notesLiveData = MutableLiveData<List<Note>>()
-
-    fun loadNotes(){
-        val list = repository.getAllNotes()
-        notesLiveData.value = list
-    }
-
+    val notesLiveData = repository.getAllNotes()
     fun addNote(note: Note){
-        repository.insert(note)
-        loadNotes()
+        viewModelScope.launch {
+            repository.insert(note)
+        }
+
     }
 
     fun deleteNote(note: Note){
-        repository.delete(note)
-        loadNotes()
+        viewModelScope.launch {
+            repository.delete(note)
+        }
+
     }
 
     fun updateNote(note: Note){
-        repository.update(note)
-        loadNotes()
+        viewModelScope.launch {
+            repository.update(note)
+        }
+
     }
 }
