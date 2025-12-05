@@ -1,31 +1,35 @@
 package com.example.notesapp.ui.notes
 
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModel
-import com.example.notesapp.data.repository.NoteRepository
+import androidx.lifecycle.viewModelScope
 import com.example.notesapp.data.model.Note
+import com.example.notesapp.data.repository.NoteRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class NoteViewModel(private val repository : NoteRepository) : ViewModel() {
+@HiltViewModel
+class NoteViewModel @Inject constructor(
+    private val repository: NoteRepository
+) : ViewModel() {
+
     val notesLiveData = repository.getAllNotes()
-    fun addNote(note: Note){
+
+    fun addNote(note: Note) {
         viewModelScope.launch {
             repository.insert(note)
         }
-
     }
 
-    fun deleteNote(note: Note){
+    fun deleteNote(note: Note) {
         viewModelScope.launch {
             repository.delete(note)
         }
-
     }
 
-    fun updateNote(note: Note){
+    fun updateNote(note: Note) {
         viewModelScope.launch {
             repository.update(note)
         }
-
     }
 }

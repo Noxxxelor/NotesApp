@@ -15,6 +15,6 @@
 
     <fragment
         android:id="@+id/addEditNoteFragment"
-        android:name="com.example.notesapp.ui.addedit.AddEditNoteFragment"
+        android:name="com.example.notesapp.ui.notes.AddEditNoteFragment"
         android:label="Новая заметка" />
 </navigation>

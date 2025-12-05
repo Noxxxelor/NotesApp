@@ -3,8 +3,9 @@ package com.example.notesapp.data.repository
 import androidx.lifecycle.LiveData
 import com.example.notesapp.data.dao.NoteDao
 import com.example.notesapp.data.model.Note
+import javax.inject.Inject
 
-class NoteRepository (private val dao : NoteDao) {
+class NoteRepository @Inject constructor(private val dao : NoteDao) {
     suspend fun insert(note: Note){
         dao.insert(note)
     }
