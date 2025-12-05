@@ -32,12 +32,7 @@ class NotesFragment : Fragment() {
         }
 
         binding.fabAddNote.setOnClickListener {
-            val testNote = Note(
-                id = System.currentTimeMillis().toString(),
-                title = "Новая заметка",
-                content = "Добавлена с FAB в ${System.currentTimeMillis()}"
-            )
-            viewModel.addNote(testNote)
+            findNavController().navigate(R.id.action_notesFragment_to_addEditNoteFragment)
         }
         return binding.root
     }
