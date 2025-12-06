@@ -11,10 +11,16 @@ import com.example.notesapp.databinding.ItemNoteBinding
 
 class NoteAdapter : ListAdapter<Note, NoteAdapter.NoteViewHolder>(DiffCallback()) {
 
-    class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
+    var onItemClick: ((Note) -> Unit)? = null  // <- добавляем callback
+
+    inner class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(note: Note) {
-            binding.textTitle.text = note.title
+            binding.textTitle.text = note.title.ifBlank { "Без заголовка" }
             binding.textContent.text = note.content
+
+            binding.root.setOnClickListener {
+                onItemClick?.invoke(note)
+            }
         }
     }
 

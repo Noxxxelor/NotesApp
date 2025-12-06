@@ -15,21 +15,15 @@ class NoteViewModel @Inject constructor(
 
     val notesLiveData = repository.getAllNotes()
 
-    fun addNote(note: Note) {
+    fun saveNote(note: Note) {
         viewModelScope.launch {
-            repository.insert(note)
+            repository.upsert(note)
         }
     }
 
     fun deleteNote(note: Note) {
         viewModelScope.launch {
             repository.delete(note)
-        }
-    }
-
-    fun updateNote(note: Note) {
-        viewModelScope.launch {
-            repository.update(note)
         }
     }
 }

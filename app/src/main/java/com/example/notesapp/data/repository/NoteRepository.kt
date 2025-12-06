@@ -6,12 +6,8 @@ import com.example.notesapp.data.model.Note
 import javax.inject.Inject
 
 class NoteRepository @Inject constructor(private val dao : NoteDao) {
-    suspend fun insert(note: Note){
-        dao.insert(note)
-    }
-
-    suspend fun update(note: Note){
-        dao.update(note)
+    suspend fun upsert(note: Note){
+        dao.upsert(note)
     }
 
     suspend fun delete(note: Note){
