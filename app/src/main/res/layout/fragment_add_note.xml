@@ -5,7 +5,6 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Поле для заголовка -->
     <EditText
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
@@ -13,7 +12,6 @@
         android:hint="Заголовок"
         android:inputType="text" />
 
-    <!-- Поле для содержания заметки -->
     <EditText
         android:id="@+id/editContent"
         android:layout_width="match_parent"
@@ -23,7 +21,6 @@
         android:inputType="textMultiLine"
         android:minLines="5" />
 
-    <!-- Кнопка сохранения -->
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"

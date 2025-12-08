@@ -32,7 +32,6 @@ class NotesFragment : Fragment() {
         binding.recyclerViewNotes.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewNotes.adapter = adapter
 
-        // Свайп для удаления заметки
         val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
             0,
             ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
@@ -53,19 +52,15 @@ class NotesFragment : Fragment() {
         })
         itemTouchHelper.attachToRecyclerView(binding.recyclerViewNotes)
 
-        // Подписка на LiveData заметок
         viewModel.notesLiveData.observe(viewLifecycleOwner) { notes ->
             adapter.submitList(notes)
         }
 
-        // Добавление новой заметки (без передачи аргументов)
         binding.fabAddNote.setOnClickListener {
-            findNavController().navigate(
-                NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(null)
-            )
+            val action = NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(null)
+            findNavController().navigate(action)
         }
 
-        // Клик по заметке → редактирование
         adapter.onItemClick = { note ->
             val action =
                 NotesFragmentDirections.actionNotesFragmentToAddEditNoteFragment(note)

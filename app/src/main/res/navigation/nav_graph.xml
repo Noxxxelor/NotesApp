@@ -18,7 +18,6 @@
         android:name="com.example.notesapp.ui.notes.AddEditNoteFragment"
         android:label="Новая заметка">
 
-        <!-- Аргумент для передачи заметки -->
         <argument
             android:name="note"
             app:argType="com.example.notesapp.data.model.Note"

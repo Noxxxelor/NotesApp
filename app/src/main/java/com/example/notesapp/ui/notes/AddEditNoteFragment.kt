@@ -31,7 +31,6 @@ class AddEditNoteFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddNoteBinding.inflate(inflater, container, false)
 
-        // Если заметка пришла — заполняем поля
         currentNote?.let { note ->
             binding.editTitle.setText(note.title)
             binding.editContent.setText(note.content)
